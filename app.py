@@ -19,8 +19,8 @@ user_input = st.text_input('Enter all cover type feature')
 
 if user_input:
     user_input = user_input.split(',')
-    feature = np.array([user_input], dtype=np.float64)
-    prediction = rfc.predict(feature).reshape(1,-1)
+    features = np.array([user_input], dtype=np.float32)
+    prediction = rfc.predict(features).reshape(1,-1)
     prediction = int(prediction[0])
     # st.write(prediction)
 
@@ -42,10 +42,10 @@ if user_input:
 
         col1, col2 = st.columns([2,3])
         with col1:
-            st.write('This is predict cover type')
-            st.write(f"{forest_name}")
+            st.write('This is predict cover type - ')
+            st.write(f"<h1 style = 'font-size:50px; font-weight:bold;'>{forest_name}</h1>", unsafe_allow_html=True)
         with col2:
             final_img = Image.open(forest_img)
-            st.image(final_img, caption = forest_name, use_column_width=True)
+            st.image(final_img,  use_column_width=True)
 
 
